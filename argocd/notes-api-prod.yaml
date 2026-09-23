@@ -3,6 +3,7 @@ kind: Application
 metadata:
   name: notes-api-prod
   namespace: argocd
+
 spec:
   project: default
 
@@ -18,5 +19,6 @@ spec:
     server: https://kubernetes.default.svc
     namespace: notes-prod
 
-  syncOptions:
-    - CreateNamespace=true
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
