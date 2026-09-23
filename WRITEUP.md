@@ -599,3 +599,40 @@ The intended deployment flow is:
 - For the local exercise, ArgoCD was installed directly into Minikube.
 
 ---
+
+# Part 5 — Stretch
+
+- Part 5 is optional, so I decided to document the production improvements I would implement rather than add unnecessary infrastructure to the local Minikube setup.
+- The two areas I would address are:
+    - **Secrets management**
+    - **Image supply-chain security**
+
+## Secrets Management Proposal
+
+- The current Helm chart uses the PostgreSQL subchart and consumes the generated Kubernetes Secret through `secretKeyRef`.
+- This works for the local assignment and avoids duplicating the database password directly in the application Deployment.
+- However, in a production GitOps environment, sensitive credentials should not be stored directly in Git or passed through normal Helm values.
+
+### Problem
+
+- `values-prod.yaml` is committed to the Git repository.
+- Production database credentials are sensitive information.
+- Kubernetes Secrets are encoded rather than being a complete solution for secret storage and lifecycle management.
+- A production implementation should keep secret values outside the Git repository and provide controlled access to workloads.
+
+### Proposed Solution
+
+I would use:
+
+**External Secrets Operator (ESO) + AWS Secrets Manager**
+
+The proposed flow would be:
+
+```text
+AWS Secrets Manager
+        ↓
+External Secrets Operator
+        ↓
+Kubernetes Secret
+        ↓
+Notes API Pod
