@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: notes-api-prod
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/JustJay-Dev1/notes-app-deployment.git
+    targetRevision: main
+    path: helm/notes-api
+    helm:
+      valueFiles:
+        - values-prod.yaml
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: notes-prod
+
+  syncOptions:
+    - CreateNamespace=true
