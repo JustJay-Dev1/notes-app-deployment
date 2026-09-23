@@ -1,5 +1,4 @@
 import logging
-import os
 
 from fastapi import Depends, FastAPI, HTTPException
 from sqlalchemy import text
@@ -7,7 +6,7 @@ from sqlalchemy.orm import Session
 
 import models
 import schemas
-from database import Base, SessionLocal, engine, get_db, wait_for_db
+from database import Base, engine, get_db, wait_for_db
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("notes-api")
