@@ -1,0 +1,23 @@
+NOTES:
+
+The Notes API has been deployed successfully.
+
+To access the API locally, run:
+
+  kubectl port-forward svc/{{ include "notes-api.fullname" . }} {{ .Values.service.port }}:{{ .Values.service.port }}
+
+Then test the application:
+
+  curl http://localhost:{{ .Values.service.port }}/healthz
+
+  curl http://localhost:{{ .Values.service.port }}/readyz
+
+Create a note:
+
+  curl -X POST http://localhost:{{ .Values.service.port }}/notes \
+    -H "content-type: application/json" \
+    -d '{"title":"it works"}'
+
+List notes:
+
+  curl http://localhost:{{ .Values.service.port }}/notes

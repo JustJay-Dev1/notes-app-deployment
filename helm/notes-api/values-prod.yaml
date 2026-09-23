@@ -1,0 +1,15 @@
+replicaCount: 2
+
+resources:
+  requests:
+    cpu: 250m
+    memory: 256Mi
+  limits:
+    cpu: "1"
+    memory: 512Mi
+
+postgresql:
+  primary:
+    persistence:
+      enabled: true
+      size: 8Gi
