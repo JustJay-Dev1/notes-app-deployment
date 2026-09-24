@@ -62,11 +62,9 @@ minikube version
 ## Clone the Repository
 
 ```bash
-git clone <YOUR_REPOSITORY_URL>
+git clone https://github.com/JustJay-Dev1/notes-app-deployment.git
 cd notes-app-deployment
 ```
-
-Replace `<YOUR_REPOSITORY_URL>` with the repository URL.
 
 ---
 
