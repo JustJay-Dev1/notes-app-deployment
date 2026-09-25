@@ -42,6 +42,14 @@
 - Tested creating a note through the API.
 - Tested retrieving notes through the API.
 
+#### Verification Screenshot — Docker Image and API Testing
+
+![Docker image and API endpoint verification](Demo_snaps/API_endpoints.png)
+
+### Verification Screenshot — Docker Container Running
+
+![Docker container running](Demo_snaps/docker_run.png)
+
 ### Problems Faced and How I Solved Them
 
 - Problem: The initial Docker build failed due to a syntax typo in the Dockerfile.
@@ -248,6 +256,8 @@
 - Ran **`helm lint`** successfully.
 - Ran **`helm template`** successfully and inspected the rendered Kubernetes manifests.
 
+![Helm and Kubernetes verification](Demo_snaps/Screenshot%202026-09-23%20162325.png)
+
 ### Trade-offs
 - Used a **community PostgreSQL Helm chart** instead of managing PostgreSQL resources manually.
 - Development PostgreSQL uses temporary storage to keep the local environment lightweight.
@@ -292,6 +302,10 @@
   9. Run `helm lint`
   10. Render Helm manifests
   11. Run Trivy configuration scanning
+
+  ### Verification Screenshot — GitHub Actions CI
+
+![GitHub Actions CI pipeline](Demo_snaps/github-actions-ci.png)
 
 ## 2. Why I Chose This Approach
 
@@ -504,6 +518,12 @@
   - Listing notes
 - The application worked successfully after being deployed through ArgoCD.
 
+![Development ArgoCD application](Demo_snaps/notesdev_argocd.png)
+
+![Development Kubernetes resources](Demo_snaps/Screenshot%202026-09-23%20221919.png)
+
+![Development API port forwarding](Demo_snaps/notes_dev_pod.png)
+
 ## Problem Faced — Production Application Manifest
 
 - The first production ArgoCD Application manifest placed `syncOptions` at the wrong level in the specification.
@@ -527,6 +547,12 @@
   - Creating a note
   - Listing notes
 - The production deployment worked successfully.
+
+![Production ArgoCD rollout](Demo_snaps/notesprod_argocd.png)
+
+![Production ArgoCD healthy](Demo_snaps/fullprod_argocd.png)
+
+![Production Kubernetes resources](Demo_snaps/runningpods.png)
 
 ## GitOps Deployment Flow
 
