@@ -66,7 +66,7 @@ jobs:
       - name: Render Helm templates
         run: |
           helm template notes-dev helm/notes-api \
-            -f helm/notes-api/values-dev.yaml \
+            -f helm/notes-api/values-prod.yaml \
             > rendered.yaml
 
       - name: Scan Helm configuration with Trivy
